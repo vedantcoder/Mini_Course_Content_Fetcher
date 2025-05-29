@@ -1,0 +1,28 @@
+{
+  "Week 1": [
+    {
+      "title": "Intro to APIs",
+      "type": "video",
+      "url": "https://example.com/video1"
+    },
+    {
+      "title": "Understanding HTML",
+      "type": "video",
+      "url": "https://www.google.com"
+    }
+  ],
+  "Week 2": [
+    {
+      "title": "What is CSS?",
+      "type": "article",
+      "url": "https://www.google.com"
+    }
+  ],
+  "Week 3": [
+    {
+      "title": "JS Callbacks",
+      "type": "video",
+      "url": "https://example.com/js-callbacks"
+    }
+  ]
+}
