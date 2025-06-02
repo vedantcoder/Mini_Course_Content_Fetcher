@@ -6,7 +6,7 @@
       "url": "https://example.com/video1"
     },
     {
-      "title": "Understanding HTML",
+      "title": "Understanding html",
       "type": "video",
       "url": "https://www.google.com"
     }
@@ -16,13 +16,6 @@
       "title": "What is CSS?",
       "type": "article",
       "url": "https://www.google.com"
-    }
-  ],
-  "Week 3": [
-    {
-      "title": "JS Callbacks",
-      "type": "video",
-      "url": "https://example.com/js-callbacks"
     }
   ]
 }

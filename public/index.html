@@ -115,28 +115,30 @@
     <button type="submit">➕ Add Resource</button>
   </form>
 
+  <!-- Button to fetch and show all modules -->
   <div class="button-center">
     <button onclick="showModules()">📖 Show All Modules</button>
   </div>
 
-  <div class="modules-output" id="modulesDisplay" style="display: none;">
-    <!-- Modules will appear here -->
-  </div>
+  <!-- Container to show modules dynamically -->
+  <div class="modules-output" id="modulesDisplay" style="display: none;"></div>
 
   <script>
+    // Handle form submission to add resource
     document.getElementById('resourceForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
+      e.preventDefault(); // Prevent page reload
       const title = document.getElementById('title').value.trim();
       const type = document.getElementById('type').value;
       const url = document.getElementById('url').value.trim();
       const week = parseInt(document.getElementById('week').value);
 
+      // Simple validation
       if (!title || !type || !url || !week) {
         alert('Please fill all fields correctly.');
         return;
       }
 
-      const resource = { title, type, url };
+      const resource = { title, type, url }; // Build resource object
 
       try {
         const res = await fetch('/modules', {
@@ -146,19 +148,21 @@
         });
 
         const data = await res.json();
-        alert(data.message);
-        this.reset();
-        showModules();
+        alert(data.message);  // Feedback to user
+        this.reset();         // Clear form
+        showModules();        // Refresh displayed modules
       } catch (error) {
         alert('Error adding resource. Try again.');
         console.error(error);
       }
     });
 
+    // Function to delete a resource
     async function deleteResource(week, title) {
       if (!confirm(`Are you sure you want to delete "${title}" from ${week}?`)) return;
 
       try {
+        // Encode to handle spaces/special characters
         const encodedWeek = encodeURIComponent(week);
         const encodedTitle = encodeURIComponent(title);
 
@@ -168,19 +172,21 @@
 
         const data = await res.json();
 
-        alert(data.message);
-        showModules();
+        alert(data.message); // Show result to user
+        showModules();       // Refresh modules
       } catch (error) {
         alert('Error deleting resource. Try again.');
         console.error(error);
       }
     }
 
+    // Function to fetch and show all modules
     async function showModules() {
       try {
         const res = await fetch('/modules');
         const data = await res.json();
 
+        // Helper to build HTML string from data
         function createModuleHTML(data) {
           let html = '';
 
@@ -200,6 +206,7 @@
           return html || '<p>No modules found.</p>';
         }
 
+        // Display the built HTML
         const container = document.getElementById('modulesDisplay');
         container.style.display = 'block';
         container.innerHTML = `<h3>📚 All Modules</h3>${createModuleHTML(data)}`;
